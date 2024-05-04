@@ -10,7 +10,7 @@ import { Item } from '../interfaces/item.interface';
 })
 export class TiendaService{
 
-  baseUrl = 'http://localhost:3000';
+  baseUrl = 'http://springbootapirest-env.eba-ykzqecs3.us-east-1.elasticbeanstalk.com';
 
   private myList: Item[] = [];
 
@@ -21,7 +21,7 @@ export class TiendaService{
 
 
   getAllProducts(): Observable<Producto[]> {
-    const response = this.httpclient.get<Producto[]>(`${this.baseUrl}/productos`);
+    const response = this.httpclient.get<Producto[]>(`${this.baseUrl}/api/products/`);
     return response;
   }
 
@@ -70,6 +70,10 @@ export class TiendaService{
   totalCart() {
     const total = this.myList.reduce(function (acc, product) { return acc + (product.cantidad * product.producto.precio); }, 0)
     return total
+  }
+
+  realizarCompra(){
+    
   }
 
 }
