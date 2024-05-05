@@ -7,6 +7,6 @@ export interface Producto {
     "existencia": number,
     "stock_max": number,
     "stock_min": number,
-    "familia_olfativa": string,
+    "familiaOlfativa": string,
     "imagen": string
 }
