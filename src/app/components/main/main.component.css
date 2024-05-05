@@ -1,3 +1,10 @@
+.info-imgs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -8,6 +15,7 @@
 
 .image {
     position: relative;
+    width: 100%;
 
 }
 
@@ -24,12 +32,12 @@
 h1 {
     font-size: 3rem;
     font-weight: 600;
-    margin-bottom: 2rem;
+    margin-bottom: 32px;
     color: white;
 }
 
 p {
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: 300;
     color: white;
 }
