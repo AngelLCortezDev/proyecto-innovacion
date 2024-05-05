@@ -10,7 +10,7 @@ import { Item } from '../interfaces/item.interface';
 })
 export class TiendaService{
 
-  baseUrl = 'https://springbootapirest-env.eba-ykzqecs3.us-east-1.elasticbeanstalk.com';
+  baseUrl = 'http://springbootapirest-env.eba-ykzqecs3.us-east-1.elasticbeanstalk.com';
 
   private myList: Item[] = [];
 
