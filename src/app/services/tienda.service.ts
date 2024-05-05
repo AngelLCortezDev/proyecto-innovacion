@@ -10,7 +10,7 @@ import { Item } from '../interfaces/item.interface';
 })
 export class TiendaService{
 
-  baseUrl = 'http://springbootapirest-env.eba-ykzqecs3.us-east-1.elasticbeanstalk.com';
+  baseUrl = 'http://localhost:3000';
 
   private myList: Item[] = [];
 
@@ -21,7 +21,7 @@ export class TiendaService{
 
 
   getAllProducts(): Observable<Producto[]> {
-    const response = this.httpclient.get<Producto[]>(`${this.baseUrl}/api/products/`);
+    const response = this.httpclient.get<Producto[]>(`${this.baseUrl}/productos`);
     return response;
   }
 

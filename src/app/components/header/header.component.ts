@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { TiendaService } from '../../services/tienda.service';
 import { Item } from '../../interfaces/item.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
