@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Producto } from '../interfaces/producto.interface';
 import { Item } from '../interfaces/item.interface';
+import { Ordenventa } from '../interfaces/ordenventa.interface';
 
 
 @Injectable({
@@ -29,20 +30,20 @@ export class TiendaService{
 
     // debugger;
     if (this.myList.length === 0) {
-      producto.cantidad = 1;
+      producto.quantity = 1;
       this.myList.push(producto);
       //emito la lista para los que estén escuchando
       this.myCart.next(this.myList);
 
     } else {
       const productoMod = this.myList.find((element) => {
-        return element.producto.idproducto === producto.producto.idproducto
+        return element.product.idproducto === producto.product.idproducto
       })
       if (productoMod) {
-        productoMod.cantidad = productoMod.cantidad + 1;
+        productoMod.quantity = productoMod.quantity + 1;
         this.myCart.next(this.myList);
       } else {
-        producto.cantidad = 1;
+        producto.quantity = 1;
         this.myList.push(producto);
         //ojo hay que emitir la lista!!
         this.myCart.next(this.myList);
@@ -53,7 +54,7 @@ export class TiendaService{
 
   findProductById(id: number) {
     return this.myList.find((element) => {
-      return element.producto.idproducto === id
+      return element.product.idproducto === id
     })
 
   }
@@ -61,19 +62,23 @@ export class TiendaService{
   deleteProduct(id: number) {
 
     this.myList = this.myList.filter((product) => {
-      return product.producto.idproducto != id
+      return product.product.idproducto != id
     })
     this.myCart.next(this.myList);
 
 
   }
   totalCart() {
-    const total = this.myList.reduce(function (acc, product) { return acc + (product.cantidad * product.producto.precio); }, 0)
+    const total = this.myList.reduce(function (acc, product) { return acc + (product.quantity * product.product.precio); }, 0)
     return total
   }
 
-  realizarCompra(){
-    
+  realizarCompra(ordenVenta: Ordenventa) {
+    this.httpclient.post(`${this.baseUrl}/api/sell`, ordenVenta).subscribe((data) => {
+      console.log(data);
+      this.myList = [];
+      this.myCart.next(this.myList);
+    })
   }
 
 }

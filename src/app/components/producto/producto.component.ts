@@ -23,8 +23,8 @@ export class ProductoComponent{
 
   addToCart(producto: Producto) {
     this.servicioTienda.addProduct({
-      producto: producto,
-      cantidad: 0
+      product: producto,
+      quantity: 0
     });
     console.log(this.servicioTienda.myCart$);
   }

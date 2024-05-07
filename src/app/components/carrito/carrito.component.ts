@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TiendaService } from '../../services/tienda.service';
 import { Item } from '../../interfaces/item.interface';
+import { Ordenventa } from '../../interfaces/ordenventa.interface';
 
 @Component({
   selector: 'app-carrito',
@@ -26,14 +27,14 @@ export class CarritoComponent {
 
     const product = this.servicioTienda.findProductById(id)
     if (product) {
-      if (operation === 'minus' && product.cantidad > 0) {
-        product.cantidad = product.cantidad - 1;
+      if (operation === 'minus' && product.quantity > 0) {
+        product.quantity = product.quantity - 1;
       }
       if (operation === 'add') {
-        product.cantidad = product.cantidad + 1;
+        product.quantity = product.quantity + 1;
 
       }
-      if (product.cantidad === 0) {
+      if (product.quantity === 0) {
         this.deleteProduct(id)
       }
     }
@@ -49,6 +50,13 @@ export class CarritoComponent {
   totalCart() {
     const result = this.servicioTienda.totalCart();
     return result;
+  }
+
+  realizarVenta(){
+    const date = new Date();
+    const ordenVenta: Ordenventa = { sell: {fecha: date, cantidad:this.servicioTienda.totalCart()}, items: this.listaCarrito}
+    console.log(ordenVenta)
+    this.servicioTienda.realizarCompra(ordenVenta);
   }
 
 }
