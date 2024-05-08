@@ -32,7 +32,6 @@ export class TiendaService{
     if (this.myList.length === 0) {
       producto.quantity = 1;
       this.myList.push(producto);
-      //emito la lista para los que estén escuchando
       this.myCart.next(this.myList);
 
     } else {
@@ -45,11 +44,10 @@ export class TiendaService{
       } else {
         producto.quantity = 1;
         this.myList.push(producto);
-        //ojo hay que emitir la lista!!
         this.myCart.next(this.myList);
       }
-
     }
+    alert('¡Producto añadido al carrito!\n'+producto.product.nombre+' $'+producto.product.precio);
   }
 
   findProductById(id: number) {
@@ -80,5 +78,4 @@ export class TiendaService{
       this.myCart.next(this.myList);
     })
   }
-
 }

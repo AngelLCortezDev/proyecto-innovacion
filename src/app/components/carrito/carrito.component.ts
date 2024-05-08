@@ -55,6 +55,7 @@ export class CarritoComponent {
   realizarVenta(){
     const date = new Date();
     const ordenVenta: Ordenventa = { sell: {fecha: date, cantidad:this.servicioTienda.totalCart()}, items: this.listaCarrito}
+    alert('¡Compra realizada con éxito!\nFecha: '+date+'\nCantidad: $'+this.servicioTienda.totalCart());
     console.log(ordenVenta)
     this.servicioTienda.realizarCompra(ordenVenta);
   }
